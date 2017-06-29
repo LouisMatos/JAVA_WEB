@@ -3,22 +3,31 @@ package br.com.luismatos.model;
 
 import java.util.Calendar;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.sun.istack.internal.NotNull;
 
 
-
+@Entity
 public class Tarefa {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@NotNull @Size(min = 5)
 	private String descricao;
+	
+
 	private boolean finalizado;
 	
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
 	private Calendar dataFinalizacao;
 
 	public Long getId() {
